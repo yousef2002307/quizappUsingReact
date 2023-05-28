@@ -1,24 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Prequiz from "./features/quiz/Prequiz";
+import Quiz from "./features/quiz/Quiz";
+import {slecetalldata} from './features/quiz/quizslice'
+import { useSelector } from "react-redux";
 function App() {
+  const quizdata = useSelector(slecetalldata);
+ const quizstatus = quizdata.quiz.quizstate;
+ const quizvals = quizdata.quiz.quiz;
+ //console.log(quizstatus,quizvals['history']['easy'],quizdata)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+   {!quizstatus?<Prequiz/> :<Quiz/>}
+    </>
   );
 }
 
